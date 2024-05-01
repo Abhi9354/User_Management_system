@@ -15,6 +15,7 @@ export const register = async (req, res) => {
     }
   } catch (err) {
     console.log("err",err);
+    throw new error(err);
   }
 };
 export const login = (req, res) => {
