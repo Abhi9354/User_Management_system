@@ -1,7 +1,6 @@
-import mongoose from "../../../../Backend/shared/sharedDB/connection.js";
-const schema = mongoose.Schema;
-
-const userSchema = new schema({name: {
+import mongoose from "../../../shared/db-connection.js"
+import { Schema } from "mongoose";
+const userSchema = new Schema({name: {
     type: String,
     required: true,
 },
@@ -19,4 +18,4 @@ password: {
 },
 })
 
-export const userModel = mongoose.model("usersStore", userSchema)
+export const userModel = mongoose.model("users", userSchema)
