@@ -1,6 +1,13 @@
+import { userModel } from "../db/model/userSchema.js";
 
-const userCrud ={
-    register(){
-        
-    }
+export const userCrud ={
+    async register(userData){
+        try{
+            const doc=  await userModel.create(userData)
+            return doc
+        }catch(err){
+              console.log('err',err);
+        }
+       
+        }
 };

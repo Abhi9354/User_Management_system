@@ -2,7 +2,6 @@ import { userService } from "../services/user-service.js";
 
 export const register = async (req, res) => {
   const data = req.body;
-
   try {
     const doc = await userService.register(data);
     if(doc._id){
@@ -15,7 +14,7 @@ export const register = async (req, res) => {
     }
   } catch (err) {
     console.log("err",err);
-    throw new error(err);
+    throw err;
   }
 };
 export const login = (req, res) => {
