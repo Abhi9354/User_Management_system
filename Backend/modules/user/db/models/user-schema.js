@@ -17,7 +17,7 @@ const userSchema = new Schema({
         type: String,
         required: true,
         minlength: 6,
-        maxlength: 12,
+        maxlength: 100,
     },
 });
 export const userModel=mongoose.model("users", userSchema)

@@ -17,8 +17,21 @@ export const register = async (req, res) => {
     throw err;
   }
 };
-export const login = (req, res) => {
-  res.send("login");
+export const login = async(req, res) => {
+
+  const userData= req.body;
+  try {
+    const doc = await userService.login(userData);
+    console.log('doc controller ',doc);
+    if(doc){
+      res.status(200).json({"message":`${doc.name}`+" logged in successfully","doc":userData})
+    }
+    else{
+      res.status(400).json({"message":"Inavalid login credentials"}) 
+    }
+  } catch (error) {
+    
+  }
 };
 export const profile = (req, res) => {
   res.send("profile");
