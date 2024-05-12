@@ -6,17 +6,14 @@ export const userService =  {
     try{
         userData.password=hashPassword(userData.password)
         const doc=  await userModel.create(userData)
-        console.log('doc user sericive',doc);
         return doc
     }catch(err){
-          console.log('err',err);
-    }
+throw err    }
    
     },
     async login(userData){
         try{
             const doc=await userModel.findOne({"email":userData.email}).select("name password -_id").exec()
-            console.log('doc ',doc);
             if(doc){
              const hashPassword=doc.password;
              const plaintextPassword=userData.password;
@@ -29,12 +26,11 @@ export const userService =  {
              }
             }
             else{
-                console.log('user not found');
+                return null
             }
         }
         catch(err){
-            console.log('err',err);
-        }
+throw err        }
         
     }
 };
