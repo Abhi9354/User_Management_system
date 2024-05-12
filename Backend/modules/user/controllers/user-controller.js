@@ -1,3 +1,4 @@
+import { AppConstants } from "../../../shared/utils/constants/config.js";
 import { userService } from "../services/user-service.js";
 
 export const register = async (req, res) => {
@@ -24,13 +25,13 @@ export const login = async(req, res) => {
     const doc = await userService.login(userData);
     console.log('doc controller ',doc);
     if(doc){
-      res.status(200).json({"message":`${doc.name}`+" logged in successfully","doc":userData})
+      res.status(AppConstants.SUCCESS_CODES).json({"message":`${doc.name}`+" logged in successfully","doc":userData})
     }
     else{
-      res.status(400).json({"message":"Inavalid login credentials"}) 
+      res.status(AppConstants.ERROR_CODES.AUTH_FAILED).json({"message":"Inavalid login credentials"}) 
     }
   } catch (error) {
-    
+    res.status(AppConstants.ERROR_CODES.INTERNAL_SERVER_ERROR).json({"message":"Internal server error"})
   }
 };
 export const profile = (req, res) => {

@@ -1,6 +1,7 @@
 import mongoose from "../../../../shared/sharedDB/connection.js";
 
 import { Schema } from "mongoose";
+import { AppConstants } from "../../../../shared/utils/constants/config.js";
 
 const userSchema = new Schema({
     name: {
@@ -20,4 +21,4 @@ const userSchema = new Schema({
         maxlength: 100,
     },
 });
-export const userModel=mongoose.model("users", userSchema)
+export const userModel=mongoose.model(AppConstants.SCHEMA.USERS_SCHEMA, userSchema)
