@@ -5,7 +5,7 @@ export const userRouter = express.Router();
 
 userRouter.post ('/login',login)
 userRouter.post ('/register',register)
-userRouter.post ('/profile',profile)
+userRouter.get ('/profile',profile)
 userRouter.post ('/remove',remove)
 
 

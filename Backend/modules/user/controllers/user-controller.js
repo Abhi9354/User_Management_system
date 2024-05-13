@@ -1,5 +1,6 @@
 import { AppConstants } from "../../../shared/utils/constants/config.js";
 import { loadMessageBundler } from "../../../shared/utils/constants/i18n/messageReader.js";
+import { generateToken, verifyToken } from "../../../shared/utils/token.js";
 import { userService } from "../services/user-service.js";
 export const register = async (req, res) => {
   const data = req.body;
@@ -22,8 +23,11 @@ export const login = async(req, res) => {
   try {
     const doc = await userService.login(userData);
     if(doc){
+
+      //generate the token
+      const token=generateToken(doc.email)
 const message=loadMessageBundler();
-res.status(AppConstants.SUCCESS_CODES).json({"message":`${doc.name} `+ message['login.success'],"doc":userData})
+res.status(AppConstants.SUCCESS_CODES).json({"message":`${doc.name} `+ message['login.success'],"doc":userData,"token":token})
     }
     else{
       res.status(AppConstants.ERROR_CODES.AUTH_FAILED).json({"message":message.login.failed}) 
@@ -34,7 +38,14 @@ res.status(AppConstants.SUCCESS_CODES).json({"message":`${doc.name} `+ message['
   }
 };
 export const profile = (req, res) => {
+  const auth=req.headers['authorization']
+  if(verifyToken(auth)){
   res.send("profile");
+    
+  }
+  else{
+    res.status(AppConstants.ERROR_CODES.AUTH_FAILED).json({"message":"authorization failed failed"})
+  }
 };
 export const remove = (req, res) => {
   res.send("remove");
