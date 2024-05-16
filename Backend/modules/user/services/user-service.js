@@ -5,7 +5,8 @@ export const userService =  {
    async register(userData){
     try{
         userData.password=hashPassword(userData.password)
-        const doc=  await userModel.create(userData)
+        const doc= await userModel.create(userData)
+        console.log("service screen");
         return doc
     }catch(err){
 throw err    }

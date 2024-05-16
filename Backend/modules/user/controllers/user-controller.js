@@ -4,10 +4,13 @@ import { generateToken, verifyToken } from "../../../shared/utils/token.js";
 import { userService } from "../services/user-service.js";
 export const register = async (req, res) => {
   const data = req.body;
+  console.log('data',data);
   try {
     const doc = await userService.register(data);
+    console.log("controller screen",doc);
     if(doc._id){
-        res.json({"message":"success","doc":doc})
+      console.log("start")
+        res.status(AppConstants.SUCCESS_CODES).json({"message":"success","doc":doc})
     }
 
     else{

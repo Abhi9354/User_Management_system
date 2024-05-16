@@ -1,12 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import chalk from "chalk";
+import cors from "cors";
 import { userRouter } from "./modules/user/routes/user-routes.js";
 import {dbConnectionLoad} from "./shared/sharedDB/connection.js"
 dotenv.config();
 
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use('/',userRouter)//middleware it just a function
 const promise=dbConnectionLoad()
