@@ -33,7 +33,7 @@ const message=loadMessageBundler();
 res.status(AppConstants.SUCCESS_CODES).json({"message":`${doc.name} `+ message['login.success'],"doc":userData,"token":token})
     }
     else{
-      res.status(AppConstants.ERROR_CODES.AUTH_FAILED).json({"message":message.login.failed}) 
+      res.status(AppConstants.ERROR_CODES.AUTH_FAILED).json({"message":"invalid credential "}) 
     }
   } catch (error) {
     throw error
