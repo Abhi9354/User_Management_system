@@ -1,6 +1,6 @@
 import mongoose from "../../../../shared/sharedDB/connection.js";
 
-import { Schema, SchemaType } from "mongoose";
+import { Schema, SchemaType, SchemaTypes } from "mongoose";
 import { AppConstants } from "../../../../shared/utils/constants/config.js";
 
 const userSchema = new Schema({
@@ -19,8 +19,9 @@ const userSchema = new Schema({
         minlength: 6,
         maxlength: 100,
     },
-    role:[{type:SchemaType.ObjectId,ref:"roles"}],
-    firstTimePasswordReset:{type:SchemaType.String,default:"N"}
+    role:[{type:SchemaTypes.ObjectId,ref:"roles"}],
+    firstTimePasswordReset:{type:SchemaTypes.String,default:"N"},
+    is_deleted: { type: SchemaTypes.Boolean, default: false },
 });
 // userSchema.index({ email: 1 })
 userSchema.index({ email: 1}, { unique: true })

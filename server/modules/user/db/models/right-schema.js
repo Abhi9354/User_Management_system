@@ -1,5 +1,5 @@
 import { Schema, SchemaTypes } from "mongoose";
-import mongoose from "../../../../shared/sharedDB/connection";
+import mongoose from "../../../../shared/sharedDB/connection.js";
 
 const rightSchema = new Schema({
     'name':{type:SchemaTypes.String, required:true, unique:true},
